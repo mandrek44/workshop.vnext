@@ -10,8 +10,15 @@ module.exports = function (grunt) {
                     targetDir: "wwwroot/lib",
                 }
             }
+        },
+        
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
         }
     });
 
     grunt.loadNpmTasks("grunt-bower-task");
+    grunt.loadNpmTasks('grunt-karma');
 };
