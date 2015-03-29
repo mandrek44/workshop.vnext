@@ -1,0 +1,27 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="todoApp">
+<head>
+    <title>Todo App</title>
+    <script src="lib/angular/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="TodoController">
+
+<ul>
+    <li ng-repeat="todo in todos">
+        <span>{{todo.task}}</span> <a href="#" ng-click="markAsDone(todo)">Done</a>
+    </li>
+</ul>
+
+    <input type="text" ng-model="newTodoTask"/><input type="button" value="Add new" ng-click="addNewTodo()"/>
+
+</body>
+</html>
