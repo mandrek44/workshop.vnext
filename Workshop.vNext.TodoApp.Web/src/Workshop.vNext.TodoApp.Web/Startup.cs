@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.StaticFiles;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Routing;
@@ -17,15 +18,20 @@ namespace Workshop.vNext.TodoApp.Web
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseFileServer(new FileServerOptions()
+            {
+                EnableDirectoryBrowsing = false
+            });
+
             app.UseMvc(ConfigureRoutes);
         }
 
         private void ConfigureRoutes(IRouteBuilder routes)
         {
             routes.MapRoute(
-               name: "default",
-               template: "{controller}/{action}/{id?}",
-               defaults: new { controller = "Home", action = "Index" });
+                name: "default",
+                template: "{controller}/{action}/{id?}",
+                defaults: new { controller = "Home", action = "Index" });
         }
     }
 }
