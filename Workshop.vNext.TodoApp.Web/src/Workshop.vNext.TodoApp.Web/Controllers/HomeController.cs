@@ -11,27 +11,4 @@ namespace Workshop.vNext.TodoApp.Web.Controllers
             return View();
         }
     }
-
-	public class TodoController
-	{
-        
-        [HttpGet]  
-        [ActionName("Index")]      
-        public IEnumerable<TodoTask> GetAll()
-        {
-            return new TodoTask[]
-            {
-                new TodoTask() { Name = "test" }
-            };
-		}
-
-        public class TodoTask
-        {
-            public TodoTask()
-            {
-            }
-
-            public string Name { get; internal set; }
-        }
-    }
 }

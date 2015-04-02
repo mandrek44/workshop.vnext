@@ -16,9 +16,21 @@ module.exports = function (grunt) {
             unit: {
                 configFile: 'karma.conf.js'
             }
+        },
+        
+        shell: {
+            webHost: {
+                options: {
+                    async: false
+                },
+                command: 'k web'
+            }
         }
     });
 
     grunt.loadNpmTasks("grunt-bower-task");
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-shell-spawn');   
+
+    grunt.registerTask('run', ['shell:webHost']);
 };
