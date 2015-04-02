@@ -2,7 +2,8 @@
     "name": "Workshop.vNext.TodoApp.Web",
     "private": true,
     "dependencies": {
-        "angular": "1.3.15"
+        "angular": "1.3.15",
+        "jquery": "2.1.3"
     },
     "exportsOverride": {
     }

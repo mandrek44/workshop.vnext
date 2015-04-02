@@ -1,13 +1,17 @@
-﻿/// <reference path="../wwwroot/app.js"/>
-
+﻿
 "use strict";
+describe("Todos API", function () {
+    var todoTasks;
 
-describe("App tests", function () {
-    it("Test test", function() {
-        expect(1).toBe(1);
+    beforeEach(function(done) {
+        $.get("http://localhost:5001/Todos", function(data) {
+            todoTasks = data;
+        }).always(function() {
+            done();
+        });
     });
 
-    it("Test test 2", function () {
-        expect(2).toBe(2);
+    it("should expose Todo tasks", function () {
+        expect(todoTasks.length).toBeGreaterThan(0);
     });
 });

@@ -5,6 +5,8 @@ using Microsoft.Framework.DependencyInjection;
 using Microsoft.AspNet.Mvc;
 using System.Linq;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNet.Http;
+using System;
 
 namespace Workshop.vNext.TodoApp.Web
 {
@@ -26,6 +28,22 @@ namespace Workshop.vNext.TodoApp.Web
 
         public void Configure(IApplicationBuilder app)
         {
+            // Allo CORS
+            app.Use((context, next) =>
+            {
+                context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+                context.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "*" });
+                context.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "*" });
+                return next();
+            });
+
+            // Log requests
+            app.Use((context, next) =>
+            {
+                Console.WriteLine(context.Request.Method + " " + context.Request.ContentType  + " " + context.Request.Path + context.Request.QueryString );
+                return next();
+            });
+
             app.UseErrorPage();
 
             app.UseFileServer(new FileServerOptions()

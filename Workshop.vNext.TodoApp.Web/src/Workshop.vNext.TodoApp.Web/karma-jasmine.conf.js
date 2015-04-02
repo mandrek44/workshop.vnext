@@ -9,10 +9,11 @@
 
         // Start these browsers
         browsers: ['PhantomJS'],
-
+        
         // list of files / patterns to load in the browser
         files: [
-            '**/*.js'
+            '../tests/**/*.js',
+            '../bower_components/jquery/dist/*.js'
         ]
     });
 }
