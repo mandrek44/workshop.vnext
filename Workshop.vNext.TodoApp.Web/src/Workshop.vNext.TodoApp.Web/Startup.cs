@@ -28,7 +28,7 @@ namespace Workshop.vNext.TodoApp.Web
 
         public void Configure(IApplicationBuilder app)
         {
-            // Allo CORS
+            // Allow CORS
             app.Use((context, next) =>
             {
                 context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
