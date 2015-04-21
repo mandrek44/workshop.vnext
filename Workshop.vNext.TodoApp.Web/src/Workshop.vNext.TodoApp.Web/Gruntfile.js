@@ -7,30 +7,35 @@ module.exports = function (grunt) {
         bower: {
             install: {
                 options: {
-                    targetDir: "wwwroot/lib",
+                    targetDir: "wwwroot/lib"
                 }
             }
         },
-        
+
         karma: {
-            unit: {
-                configFile: 'karma-jasmine.conf.js'
+            options: {
+                configFile: "karma-jasmine.conf.js"
             },
+            unit: {
+                singleRun: true
+            },
+            continuous: {
+                singleRun: false,
+                background: true
+            }
         },
-        
-        shell: {
-            webHost: {
-                options: {
-                    async: false
-                },
-                command: 'k web'
+
+        watch: {
+            karma: {
+                files: ["**/*.cs", "**/*.cshtml", "**/*.js"],
+                tasks: ["karma:continuous:run"]
             }
         }
     });
 
+    grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-bower-task");
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-shell-spawn');   
+    grunt.loadNpmTasks("grunt-karma");
 
-    grunt.registerTask('run', ['shell:webHost']);
+    grunt.registerTask("test", ["karma:continuous:start", "watch:karma"]);
 };
