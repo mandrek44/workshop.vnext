@@ -40,7 +40,7 @@ namespace Workshop.vNext.TodoApp.Web
             // Log requests
             app.Use((context, next) =>
             {
-                Console.WriteLine(context.Request.Method + " " + context.Request.ContentType  + " " + context.Request.Path + context.Request.QueryString );
+                Console.WriteLine(context.Request.Method + " " + context.Request.ContentType  + " " + context.Request.Path + context.Request.QueryString);
                 return next();
             });
 
