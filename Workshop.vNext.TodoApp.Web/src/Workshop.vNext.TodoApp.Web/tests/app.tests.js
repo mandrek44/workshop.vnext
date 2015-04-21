@@ -7,7 +7,7 @@ describe("Todos API", function () {
         var todoTasks = [];
 
         beforeEach(function(done) {
-            $.get("http://localhost:5001/Todos", function(data) {
+        $.get("http://localhost:1602/Todos", function(data) {
                     todoTasks = data;
                 }).fail(function(data) {
                     console.info(JSON.stringify(data));
