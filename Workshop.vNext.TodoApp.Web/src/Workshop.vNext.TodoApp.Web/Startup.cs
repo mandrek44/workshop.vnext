@@ -27,24 +27,36 @@ namespace Workshop.vNext.TodoApp.Web
         }
 
         public void Configure(IApplicationBuilder app)
-        {
+        { 
+            // Log requests
+            app.Use(async (context, next) =>
+            {
+                Console.WriteLine(context.Request.Method + " " + context.Request.ContentType + " " + context.Request.Path + context.Request.QueryString);
+                try
+                {
+                    await next();
+                }
+                catch (Exception exc)
+                {
+                    Console.WriteLine(exc.ToString());
+                    throw;
+                }
+
+            })
             // Allow CORS
             app.Use((context, next) =>
             {
                 context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-                context.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "*" });
-                context.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "*" });
+                context.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "origin, x-csrftoken, content-type, accept" });
+                context.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "GET, POST, PUT, DELETE, OPTIONS" });
+                context.Response.Headers.Add("Access-Control-Max-Age", new[] { "1000" });
+
+                if (context.Request.Method == "OPTIONS")
+                    return context.Response.WriteAsync("");
                 return next();
             });
 
-            // Log requests
-            app.Use((context, next) =>
-            {
-                Console.WriteLine(context.Request.Method + " " + context.Request.ContentType  + " " + context.Request.Path + context.Request.QueryString);
-                return next();
-            });
-
-            app.UseErrorPage();
+            //app.UseErrorPage();
 
             app.UseFileServer(new FileServerOptions()
             {
