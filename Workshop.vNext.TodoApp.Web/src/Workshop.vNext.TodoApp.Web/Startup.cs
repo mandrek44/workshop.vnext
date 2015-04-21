@@ -31,7 +31,8 @@ namespace Workshop.vNext.TodoApp.Web
             // Log requests
             app.Use(async (context, next) =>
             {
-                Console.WriteLine(context.Request.Method + " " + context.Request.ContentType + " " + context.Request.Path + context.Request.QueryString);
+                Console.WriteLine(context.Request.Method + " " + context.Request.ContentType + " " +
+                                  context.Request.Path + context.Request.QueryString);
                 try
                 {
                     await next();
@@ -42,7 +43,8 @@ namespace Workshop.vNext.TodoApp.Web
                     throw;
                 }
 
-            })
+            });
+
             // Allow CORS
             app.Use((context, next) =>
             {

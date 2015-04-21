@@ -28,11 +28,11 @@ describe("Todos API", function () {
 
         beforeEach(function(done) {
             $.ajax({
-                url: "http://localhost:5001/Todos",
+                url: "http://localhost:1602/Todos",
                 data: JSON.stringify({ id: testId, task: "Test Task" }),
                 success: function () {
                     console.info("Posted");
-                    $.get("http://localhost:5001/Todos", function(data) { todoTasks = data; })
+                    $.get("http://localhost:1602/Todos", function (data) { todoTasks = data; })
                         .always(function() { done(); });
                 },
                 contentType: "application/json; charset=UTF-8",
@@ -53,15 +53,16 @@ describe("Todos API", function () {
         var testId = "9" + (new Date()).getTime() % 10000;
 
         beforeEach(function (done) {
-            $.ajax({url: "http://localhost:5001/Todos",
+            $.ajax({
+                url: "http://localhost:1602/Todos",
                 data: JSON.stringify({ id: testId, task: "Test Task" }),
                 success: function () {
                     console.info("Posted before delete");
                     $.ajax({
-                        url: "http://localhost:5001/Todos/" + testId,
+                        url: "http://localhost:1602/Todos/" + testId,
                         type: "DELETE",
                         success: function() {
-                            $.get("http://localhost:5001/Todos", function(data) { todoTasks = data; })
+                            $.get("http://localhost:1602/Todos", function (data) { todoTasks = data; })
                                 .always(function() { done(); })
                         },
                         error: function(err) {
