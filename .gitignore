@@ -194,4 +194,7 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-Workshop.vNext.TodoApp.Web/Workshop.vNext.TodoApp.Web.sln.ide/
+
+# other files
+Workshop.vNext.TodoApp.Web.sln.ide/
+src/Workshop.vNext.TodoApp.Web/wwwroot/lib/
