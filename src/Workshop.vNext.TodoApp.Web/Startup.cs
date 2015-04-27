@@ -27,7 +27,19 @@ namespace Workshop.vNext.TodoApp.Web
         }
 
         public void Configure(IApplicationBuilder app)
-        { 
+        {
+            app.Use(async (context, next) =>
+            {
+                try
+                {
+                    await next();
+                }
+                finally
+                {
+                    context.Response.Headers["X-Served-By"] = app.Server.Name;
+                }
+            });
+
             // Log requests
             app.Use(async (context, next) =>
             {

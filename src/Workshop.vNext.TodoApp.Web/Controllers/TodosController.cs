@@ -1,19 +1,14 @@
 ﻿using Microsoft.AspNet.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.InMemory;
 using Workshop.vNext.TodoApp.Web.Infrastructure;
 using Workshop.vNext.TodoApp.Web.Models;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Workshop.vNext.TodoApp.Web.Controllers
 {
     [Route("Todos")]
-    public class TodosController : Controller
+    public class TodosController
     {
         static TodosController()
         {
