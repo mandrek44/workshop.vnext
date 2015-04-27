@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Workshop.vNext.TodoApp.Web.Models
+﻿namespace Workshop.vNext.TodoApp.Web.Models
 {
     public class Todo
     {
