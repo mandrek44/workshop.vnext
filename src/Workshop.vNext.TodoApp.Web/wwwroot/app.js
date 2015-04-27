@@ -16,7 +16,10 @@ todoApp.controller("TodoController", function ($scope, $http) {
     };
 
     $scope.addNewTodo = function() {
-       
+        if (!$scope.newTodoTask) {
+            return;
+        }
+
         $http.post("/Todos", { id: (new Date()).getTime() % 10000, task: $scope.newTodoTask }).success(function() {
              $scope.todos.push({ task: $scope.newTodoTask });
              $scope.newTodoTask = "";
