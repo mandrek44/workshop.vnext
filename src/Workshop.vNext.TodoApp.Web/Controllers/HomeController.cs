@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.AspNet.Mvc;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Mvc;
 
 namespace Workshop.vNext.TodoApp.Web.Controllers
 {
