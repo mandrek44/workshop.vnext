@@ -15,62 +15,56 @@ namespace Workshop.vNext.TodoApp.Web.Controllers
     [Route("Todos")]
     public class TodosController : Controller
     {
-        public TodosController()
+        static TodosController()
         {
-            // TODO: initialize properly
-            using (var db = new MyContext())
+            using (var ctx = new TodosContext())
             {
-                if (db.Todos.Any())
-                {
-                    return;
-                }
+                ctx.Todos.Add(new Todo { Id = 1, Task = "Take garbage" });
+                ctx.Todos.Add(new Todo { Id = 2, Task = "Drive home" });
+                ctx.Todos.Add(new Todo { Id = 3, Task = "Find Wally" });
 
-                db.Todos.Add(new Todo { Id = 1, Task = "Take garbage" });
-                db.Todos.Add(new Todo { Id = 2, Task = "Drive home" });
-                db.Todos.Add(new Todo { Id = 3, Task = "Find Wally" });
-
-                db.SaveChanges();
+                ctx.SaveChanges();
             }
         }
 
         [HttpGet("")]
         public async Task<ICollection<Todo>> Get()
         {
-            using (var db = new MyContext())
+            using (var ctx = new TodosContext())
             {
-                return await db.Todos.OrderBy(b => b.Task).ToListAsync();
+                return await ctx.Todos.OrderBy(b => b.Task).ToListAsync();
             }
         }
 
         [HttpGet("{id}")]
         public async Task<Todo> Get(int id)
         {
-            using (var db = new MyContext())
+            using (var ctx = new TodosContext())
             {
-                return await db.Todos.SingleOrDefaultAsync(t => t.Id == id);
+                return await ctx.Todos.SingleOrDefaultAsync(t => t.Id == id);
             }
         }
 
         [HttpPost("")]
         public async Task Post([FromBody]Todo todo)
         {
-            using (var db = new MyContext())
+            using (var ctx = new TodosContext())
             {
-                db.Todos.Add(todo);
-                await db.SaveChangesAsync();
+                ctx.Todos.Add(todo);
+                await ctx.SaveChangesAsync();
             }
         }
 
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-            using (var db = new MyContext())
+            using (var ctx = new TodosContext())
             {
-                var toDelete = await db.Todos.FirstOrDefaultAsync(t => t.Id == id);
+                var toDelete = await ctx.Todos.FirstOrDefaultAsync(t => t.Id == id);
                 if (toDelete != null)
                 {
-                    db.Todos.Remove(toDelete);
-                    await db.SaveChangesAsync();
+                    ctx.Todos.Remove(toDelete);
+                    await ctx.SaveChangesAsync();
                 }
             }
         }
