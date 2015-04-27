@@ -28,35 +28,6 @@ namespace Workshop.vNext.TodoApp.Web
 
         public void Configure(IApplicationBuilder app)
         {
-            app.Use(async (context, next) =>
-            {
-                try
-                {
-                    await next();
-                }
-                finally
-                {
-                    context.Response.Headers["X-Served-By"] = app.Server.Name;
-                }
-            });
-
-            // Log requests
-            app.Use(async (context, next) =>
-            {
-                Console.WriteLine(context.Request.Method + " " + context.Request.ContentType + " " +
-                                  context.Request.Path + context.Request.QueryString);
-                try
-                {
-                    await next();
-                }
-                catch (Exception exc)
-                {
-                    Console.WriteLine(exc.ToString());
-                    throw;
-                }
-
-            });
-
             // Allow CORS
             app.Use((context, next) =>
             {
