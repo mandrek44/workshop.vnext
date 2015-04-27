@@ -12,9 +12,9 @@
         
         // list of files / patterns to load in the browser
         files: [
-            '../tests/**/*.js',
-            '../bower_components/jquery/dist/*.js',
-            '../bower_components/underscore/underscore.js',
+            '../bower_components/jquery/dist/jquery.js',
+            '../bower_components/lodash/lodash.js',
+            '../tests/**/*.js'
         ]
     });
 }
