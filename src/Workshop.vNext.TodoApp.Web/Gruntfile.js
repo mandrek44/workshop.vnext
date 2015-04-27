@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 
         watch: {
             karma: {
-                files: ["**/*.cs", "**/*.cshtml", "**/*.js"],
+            	files: ["Controllers/*.cs", "Views/**/*.cshtml", "tests/**/*.js", "wwwroot/*.js"],
                 tasks: ["karma:continuous:run"]
             }
         }
