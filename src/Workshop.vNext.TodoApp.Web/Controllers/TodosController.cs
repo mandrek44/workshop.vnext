@@ -27,46 +27,47 @@ namespace Workshop.vNext.TodoApp.Web.Controllers
             }
         }
 
-        [HttpGet("")]
-        public async Task<ICollection<Todo>> Get()
-        {
-            using (var ctx = new TodosContext())
-            {
-                return await ctx.Todos.OrderBy(b => b.Task).ToListAsync();
-            }
-        }
+		[HttpGet("")]
+		public async Task<ICollection<Todo>> Get()
+		{
+			using (var ctx = new TodosContext())
+			{
+				return await ctx.Todos.OrderBy(b => b.Task).ToListAsync();
+			}
+		}
 
-        [HttpGet("{id}")]
-        public async Task<Todo> Get(int id)
-        {
-            using (var ctx = new TodosContext())
-            {
-                return await ctx.Todos.SingleOrDefaultAsync(t => t.Id == id);
-            }
-        }
+		[HttpGet("{id}")]
+		public async Task<Todo> Get(int id)
+		{
+			return null;
+			using (var ctx = new TodosContext())
+			{
+				return await ctx.Todos.SingleOrDefaultAsync(t => t.Id == id);
+			}
+		}
 
-        [HttpPost("")]
-        public async Task Post([FromBody]Todo todo)
-        {
-            using (var ctx = new TodosContext())
-            {
-                ctx.Todos.Add(todo);
-                await ctx.SaveChangesAsync();
-            }
-        }
+		[HttpPost("")]
+		public async Task Post([FromBody]Todo todo)
+		{
+			using (var ctx = new TodosContext())
+			{
+				ctx.Todos.Add(todo);
+				await ctx.SaveChangesAsync();
+			}
+		}
 
-        [HttpDelete("{id}")]
-        public async Task Delete(int id)
-        {
-            using (var ctx = new TodosContext())
-            {
-                var toDelete = await ctx.Todos.FirstOrDefaultAsync(t => t.Id == id);
-                if (toDelete != null)
-                {
-                    ctx.Todos.Remove(toDelete);
-                    await ctx.SaveChangesAsync();
-                }
-            }
-        }
-    }
+		[HttpDelete("{id}")]
+		public async Task Delete(int id)
+		{
+			using (var ctx = new TodosContext())
+			{
+				var toDelete = await ctx.Todos.FirstOrDefaultAsync(t => t.Id == id);
+				if (toDelete != null)
+				{
+					ctx.Todos.Remove(toDelete);
+					await ctx.SaveChangesAsync();
+				}
+			}
+		}
+	}
 }
